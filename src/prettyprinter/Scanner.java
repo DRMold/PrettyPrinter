@@ -26,7 +26,18 @@ class Scanner
     //Removes whitespace and comments
     if (bite >= 0 && bite <= 32) 
         bite = -1;
-    //if (bite == 59) If bite is a semicolon!!
+    if (bite == 59) 
+    {
+       do 
+       {
+           try {
+                in.read();
+           } catch (IOException e) {
+                System.err.println("We fail: " + e.getMessage());
+           }
+       } while (bite != 10); //Looks for newline
+       bite = -1;
+    }
         
     
     if (bite == -1)
@@ -70,7 +81,6 @@ class Scanner
 
     // String constants
     else if (ch == '"') {
-      // TODO: scan a string into the buffer variable buf; Double check
       int i = 0;
       do
       {
@@ -82,11 +92,8 @@ class Scanner
         buf[i] = (byte) bite;
         i++;
       } while (bite != 34); 
-      
-      String s = "";
-      for (int j = 0; j < i; j++)
-      {s+=(char)buf[j];}
-      return new StrToken(s); //buf.toString()
+
+      return new StrToken(new String(buf)); //buf.toString()
     }
 
     // Integer constants
@@ -137,21 +144,18 @@ class Scanner
             (ch >= '$' && ch <= '&') || (ch >= '<' && ch <= '@') || 
             ch == '!' || ch == '+' || ch == '*' || ch == '-' || 
             ch == '/' || ch == ':' || ch == '^' || ch == '_' || ch == '~'));
-        
-      String s = "";
-      for (int j = 0; j < i; j++)
-      {s+=(char)buf[j];} 
-        
+                
       try {
           in.unread(bite);
       } catch (IOException e) {
          System.err.println("We fail: " + e.getMessage());
       } 
-      return new IdentToken(s); //buf.toString()
+      return new IdentToken(new String(buf)); //buf.toString()
     }
 
     // Illegal character
-    else {
+    else 
+    {
       System.err.println("Illegal input character '" + (char) ch + '\'');
       return getNextToken();
     }

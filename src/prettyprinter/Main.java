@@ -19,11 +19,6 @@ public class Main
 
     public static void main (String argv[]) {
 	// create scanner that reads from standard input
-        byte[] buf = new byte[1000];
-        buf[0] = 65;
-        buf[1] = 65;
-        String s = new String(buf);
-        System.out.print(s);
         Scanner scanner = new Scanner(System.in);
 
 	if (argv.length > 2) {
