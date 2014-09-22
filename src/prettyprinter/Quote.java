@@ -1,6 +1,8 @@
+package prettyprinter;
 import java.io.*;
 
-class Quote extends Special {
+class Quote extends Special 
+{
  
     // TODO: Add any fields needed.
 

@@ -1,3 +1,5 @@
+package prettyprinter;
+
 // Parser.java -- the implementation of class Parser
 //
 // Defines
@@ -39,14 +41,40 @@ class Parser {
   public Parser(Scanner s) { scanner = s; }
   
   public Node parseExp() {
-    // TODO: write code for parsing an exp
-    return null;
+    Token tok = scanner.getNextToken();
+    return parseExp(tok);
   }
   
-  protected Node parseRest() {
-    // TODO: write code for parsing rest
-    return null;
+  private Node parseExp(Token tok)
+  {
+      int tt = tok.getType();
+      if (tt == Token.LPAREN) { return parseRest(); }
+      else if (tt == Token.FALSE) { return new BooleanLit(false); }
+      else if (tt == Token.TRUE) { return new BooleanLit(true); }
+      else if (tt == Token.QUOTE) 
+      {
+          //TODO: Special form nodes; Involves Cons node and parseList();
+          return new Quote();
+      }
+      else if (tt == Token.INT) { return new IntLit(tok.getIntVal()); }
+      else if (tt == Token.STRING) { return new StrLit(tok.getStrVal()); }
+      else if (tt == Token.IDENT) { return new Ident(tok.getName()); }
+      return null;
   }
   
-  // TODO: Add any additional methods you might need.
+  protected Node parseRest() 
+  {
+    Token tok = scanner.getNextToken();
+    if (tok.getType() == Token.RPAREN) { return new Nil(); }
+    else
+        return parseRest(tok);
+  }
+  
+  protected Node parseRest(Token tok) 
+  {
+      {
+          return new Cons(parseExp(), parseRest());
+      }
+      return null; //Just getting rid of errors
+  }
 };

@@ -34,7 +34,8 @@ class Cons extends Node
 	 parseList();
      }
 
-   
+    public boolean isPair()   { return true; }
+     
      void print(int n) 
      {
          form.print(this, n, false);

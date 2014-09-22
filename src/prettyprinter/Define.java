@@ -1,3 +1,5 @@
+package prettyprinter;
+
 import java.io.*;
 
 class Define extends Special {

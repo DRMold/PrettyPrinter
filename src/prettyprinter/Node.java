@@ -1,6 +1,9 @@
+package prettyprinter;
+
 import java.io.*;
 
-class Node {
+class Node 
+{
   // The argument of print(int) is the number of characters to indent.
   // Every subclass of Node must implement print(int).
   void print(int n) {}
@@ -20,7 +23,8 @@ class Node {
   // encode that in the sign bit of n.  If you need additional parameters,
   // make sure that you define the method print in all the appropriate
   // subclasses of Node as well.
-  void print(int n, boolean p) {
+  void print(int n, boolean p) 
+  {
     print(n);
   }
 
@@ -28,7 +32,6 @@ class Node {
   // evaluating them, we need some helper functions that test
   // the type of a node and that extract some information.
 
-  // TODO: implement these in the appropriate subclasses to return TRUE.
   public boolean isBoolean()   { return false; }  // BooleanLit
   public boolean isNumber() { return false; }  // IntLit
   public boolean isString() { return false; }  // StringLit

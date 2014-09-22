@@ -81,17 +81,23 @@ class Scanner
 
     // String constants
     else if (ch == '"') {
-      int i = 0;
-      do
+      int i = 0; 
+      try {
+            bite = in.read();
+        } catch (IOException e) {
+            System.err.println("We fail: " + e.getMessage());
+        }
+      while (bite != 34)
       {
+        buf[i] = (byte) bite;
+        i++;
         try {
             bite = in.read();
         } catch (IOException e) {
             System.err.println("We fail: " + e.getMessage());
         } 
-        buf[i] = (byte) bite;
-        i++;
-      } while (bite != 34); 
+        
+      }  
 
       return new StrToken(new String(buf)); //buf.toString()
     }
@@ -133,17 +139,18 @@ class Scanner
       // in->putback(ch);
       int i = 0;
       do {
+          buf[i] = (byte) bite;
+          i++;
           try {
             bite = in.read();
           } catch (IOException e) {
              System.err.println("We fail: " + e.getMessage());
           } 
-          buf[i] = (byte) bite;
-          i++;
-      } while (!((ch >= 'A' && ch <= 'Z') || (ch >= 'a' && ch <= 'z') || 
+          ch = (char) bite;
+      } while ((ch >= 'A' && ch <= 'Z') || (ch >= 'a' && ch <= 'z') || 
             (ch >= '$' && ch <= '&') || (ch >= '<' && ch <= '@') || 
             ch == '!' || ch == '+' || ch == '*' || ch == '-' || 
-            ch == '/' || ch == ':' || ch == '^' || ch == '_' || ch == '~'));
+            ch == '/' || ch == ':' || ch == '^' || ch == '_' || ch == '~');
                 
       try {
           in.unread(bite);
