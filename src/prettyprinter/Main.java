@@ -49,7 +49,7 @@ public class Main
 	// Create parser
 	Parser parser = new Parser(scanner);
 	Node root;
-	
+        
 	// Parse and pretty-print each input expression
 	root = parser.parseExp();
 	while (root != null) 

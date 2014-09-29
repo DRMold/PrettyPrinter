@@ -5,6 +5,13 @@ class Cons extends Node
     private Node car;
     private Node cdr;
     private Special form;
+    
+    public Cons(Node a, Node d) 
+     {
+         car = a;
+	 cdr = d;
+	 parseList();
+     }
 
     // parseList() `parses' special forms, constructs an appropriate
 
@@ -22,29 +29,41 @@ class Cons extends Node
   
     // parsing up to the interpreter.
    
-    void parseList() { }
+    void parseList() 
+    {
+        if (!car.isSymbol()) { form = new Regular(); }
+        else if (car.getName().toLowerCase().equals("if")) { form = new If(); }
+        else if (car.getName().toLowerCase().equals("lambda")) { form = new Lambda(); }
+        else if (car.getName().toLowerCase().equals("begin")) { form = new Begin(); }
+        else if (car.getName().toLowerCase().equals("quote")) { form = new Quote(); }
+        else if (car.getName().toLowerCase().equals("let")) { form = new Let(); }
+        else if (car.getName().toLowerCase().equals("cond")) { form = new Cond(); }
+        else if (car.getName().toLowerCase().equals("define")) { form = new Define(); }
+        else if (car.getName().toLowerCase().equals("set")) { form = new Set(); }
+        else { form = new Regular(); }
+    }
     
     // TODO: Add any helper functions for parseList as appropriate.
 
-   
-     public Cons(Node a, Node d) 
-     {
-         car = a;
-	 cdr = d;
-	 parseList();
-     }
-
     public boolean isPair()   { return true; }
+    
+    public Node getCar() { return car; }
+    public Node getCdr() { return cdr; }
      
      void print(int n) 
      {
-         form.print(this, n, false);
+         form.print(this.car, n, false);
+         form.print(this.cdr, n, true);
      }
 
     
     void print(int n, boolean p) 
     {
-        form.print(this, n, p);
+        if (this.car.isPair())
+        { form.print(this.car, n, false); }
+        else
+        { form.print(this.car, n, p); }
+        form.print(this.cdr, n, p);
     }
 
 

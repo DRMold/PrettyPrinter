@@ -19,17 +19,19 @@ class BooleanLit extends Node
     
         // There got to be a more efficient way to print n spaces.
    
-        for (int i = 0; i < n; i++)
-            System.out.print(" ");
-    
+        if (n > 0)
+        {
+            for (int i = 0;i < n; i++)
+                System.out.print(" ");
+        }
    
         if (booleanVal) 
         {
-            System.out.println("#t");
+            System.out.print("#t");
         } 
         else 
         {
-            System.out.println("#f");
+            System.out.print("#f");
         }
   }
 }

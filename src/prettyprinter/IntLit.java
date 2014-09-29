@@ -10,10 +10,14 @@ class IntLit extends Node
   
   public boolean isNumber() { return true; }
 
-  public void print(int n) {
-    for (int i = 0; i < n; i++)
-      System.out.print(" ");
+  public void print(int n) 
+  {
+        if (n > 0)
+        {
+            for (int i = 0;i < n; i++)
+                System.out.print("space_");
+        }
 
-    System.out.println(intVal);
+        System.out.print(intVal);
   }
 }

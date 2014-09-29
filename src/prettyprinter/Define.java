@@ -2,13 +2,17 @@ package prettyprinter;
 
 import java.io.*;
 
-class Define extends Special {
+class Define extends Special 
+{
  
-    // TODO: Add any fields needed.
+    private boolean isFunc;
 
  
-    // TODO: Add an appropriate constructor.
+    //public Define(boolean func)
+    //{ isFunc = func; }
 
-    void print(Node t, int n, boolean p) {
+    void print(Node t, int n, boolean p) 
+    {
+        
     }
 }

@@ -16,7 +16,9 @@ package prettyprinter;
 //         |  string_constant
 //         |  identifier
 //    rest -> )
-//         |  exp+ [. exp] )
+//         | exp Y
+//    Y -> rest
+//      | . exp )
 //
 // and builds a parse tree.  Lists of the form (rest) are further
 // `parsed' into regular lists and special forms in the constructor
@@ -35,7 +37,8 @@ package prettyprinter;
 // parser discards the offending token (which probably was a DOT
 // or an RPAREN) and attempts to continue parsing with the next token.
 
-class Parser {
+class Parser 
+{
   private Scanner scanner;
 
   public Parser(Scanner s) { scanner = s; }
@@ -51,11 +54,7 @@ class Parser {
       if (tt == Token.LPAREN) { return parseRest(); }
       else if (tt == Token.FALSE) { return new BooleanLit(false); }
       else if (tt == Token.TRUE) { return new BooleanLit(true); }
-      else if (tt == Token.QUOTE) 
-      {
-          //TODO: Special form nodes; Involves Cons node and parseList();
-          return new Quote();
-      }
+      else if (tt == Token.QUOTE) { return new Cons(new Ident("Quote"),new Cons(parseExp(), new Nil())); }
       else if (tt == Token.INT) { return new IntLit(tok.getIntVal()); }
       else if (tt == Token.STRING) { return new StrLit(tok.getStrVal()); }
       else if (tt == Token.IDENT) { return new Ident(tok.getName()); }
@@ -65,16 +64,31 @@ class Parser {
   protected Node parseRest() 
   {
     Token tok = scanner.getNextToken();
-    if (tok.getType() == Token.RPAREN) { return new Nil(); }
-    else
-        return parseRest(tok);
+    return parseRest(tok);
   }
   
-  protected Node parseRest(Token tok) 
+  private Node parseRest(Token tok) 
   {
+      if (tok.getType() == Token.RPAREN) { return new Nil(); }
+      else if (tok.getType() != Token.DOT)
       {
-          return new Cons(parseExp(), parseRest());
+        Node a = parseExp(tok);
+        Node b = parseY();
+        return new Cons(a, b);
       }
-      return null; //Just getting rid of errors
+      else
+        return null; //Just getting rid of errors
   }
+  
+  private Node parseY()
+  {
+      Token tok = scanner.getNextToken();
+      if (tok.getType() == Token.DOT) 
+      {
+          return new Cons(new Ident("Dot"), new Cons(parseExp(), new Nil()));
+      }
+      else
+          return parseRest(tok);
+  }
+  
 };

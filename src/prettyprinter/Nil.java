@@ -14,16 +14,19 @@ class Nil extends Node
   
   public void print(int n, boolean p)
   {
-    for (int i = 0; i < n; i++)
-      System.out.print(" ");
+        if (n > 0)
+        {
+            for (int i = 0;i < n; i++)
+                System.out.print(" ");
+        }
     
-    if (p) 
-    {
-      System.out.println(")");
-    } 
-    else
-    {
-      System.out.println("()");
-    }
+        if (p) 
+        {
+          System.out.println(")");
+        } 
+        else
+        {
+          System.out.println("()");
+        }
   }
 }

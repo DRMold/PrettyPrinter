@@ -6,12 +6,13 @@ import java.io.*;
 class Scanner 
 {
   private PushbackInputStream in;
-  private byte[] buf = new byte[1000];
+  private byte[] buf;
 
   public Scanner(InputStream i) { in = new PushbackInputStream(i); }
     
   public Token getNextToken()
   {
+    buf = new byte[1000];
     int bite = -1;
 	
     // It would be more efficient if we'd maintain our own input buffer
@@ -24,19 +25,33 @@ class Scanner
     }
     
     //Removes whitespace and comments
-    if (bite >= 0 && bite <= 32) 
-        bite = -1;
+    if (bite == 32 || (bite >= 9 && bite <= 13)) 
+    {
+        do
+        {
+            try {
+                bite=in.read();
+                //System.out.print(bite);
+           } catch (IOException e) {
+                System.err.println("We fail: " + e.getMessage());
+           }
+        } while (bite == 32 || (bite >= 9 && bite <= 13));
+    }
     if (bite == 59) 
     {
        do 
        {
            try {
-                in.read();
+                bite=in.read();
            } catch (IOException e) {
                 System.err.println("We fail: " + e.getMessage());
            }
        } while (bite != 10); //Looks for newline
-       bite = -1;
+       try {
+                bite=in.read();
+           } catch (IOException e) {
+                System.err.println("We fail: " + e.getMessage());
+           }
     }
         
     
@@ -99,7 +114,7 @@ class Scanner
         
       }  
 
-      return new StrToken(new String(buf)); //buf.toString()
+      return new StrToken(new String(buf, 0, i)); //buf.toString()
     }
 
     // Integer constants
@@ -157,7 +172,7 @@ class Scanner
       } catch (IOException e) {
          System.err.println("We fail: " + e.getMessage());
       } 
-      return new IdentToken(new String(buf)); //buf.toString()
+      return new IdentToken(new String(buf, 0, i)); //buf.toString()
     }
 
     // Illegal character
