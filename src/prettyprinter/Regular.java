@@ -4,19 +4,13 @@ import java.io.*;
 
 class Regular extends Special 
 {
- 
-    // TODO: Add any fields needed.
-
- 
-    // TODO: Add an appropriate constructor.
-
     void print(Node t, int n, boolean p) 
     {
         if (n > 0)
         {    
             for (int i = 0; i < n; i++)
             {
-                System.out.print("space");
+                System.out.print("space_reg");
             }                
         }
         
@@ -31,7 +25,7 @@ class Regular extends Special
         {
            System.out.print("("); 
            if (t.isPair() || t.isNull())
-            t.print(n, true);
+            t.print(0, true);
            else
                t.print(0);
         }

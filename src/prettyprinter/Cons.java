@@ -43,12 +43,22 @@ class Cons extends Node
         else { form = new Regular(); }
     }
     
-    // TODO: Add any helper functions for parseList as appropriate.
-
     public boolean isPair()   { return true; }
     
     public Node getCar() { return car; }
     public Node getCdr() { return cdr; }
+    
+    public void setCar(Node a) 
+    {
+        this.car = a; 
+        parseList();
+    }
+    
+     public void setCdr(Node b) 
+     {
+         this.cdr = b;
+         parseList();
+     }
      
      void print(int n) 
      {
@@ -60,11 +70,13 @@ class Cons extends Node
     void print(int n, boolean p) 
     {
         if (this.car.isPair())
-        { form.print(this.car, n, false); }
+        {
+            form.print(this.car, n, false); 
+        }
         else
-        { form.print(this.car, n, p); }
+        {
+            form.print(this.car, n, p); 
+        }
         form.print(this.cdr, n, p);
     }
-
-
 }

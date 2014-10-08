@@ -15,7 +15,7 @@ class IntLit extends Node
         if (n > 0)
         {
             for (int i = 0;i < n; i++)
-                System.out.print("space_");
+                System.out.print("space_int");
         }
 
         System.out.print(intVal);

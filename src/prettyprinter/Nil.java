@@ -17,7 +17,7 @@ class Nil extends Node
         if (n > 0)
         {
             for (int i = 0;i < n; i++)
-                System.out.print(" ");
+                System.out.print("space_nil");
         }
     
         if (p) 

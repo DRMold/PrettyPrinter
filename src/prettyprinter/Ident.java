@@ -20,7 +20,7 @@ class Ident extends Node
     if (n > 0)
     {
       for (int i = 0; i < n; i++)
-        System.out.print("_space_");
+        System.out.print("space_id");
     }
     
     System.out.print(name);

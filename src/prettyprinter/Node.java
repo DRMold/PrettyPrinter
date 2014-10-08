@@ -39,16 +39,15 @@ class Node
   public boolean isNull()   { return false; }  // nil
   public boolean isPair()   { return false; }  // Cons
 
-  // TODO: Report an error in these default methods and implement them
-  // in class Cons.  After setCar, a Cons cell needs to be `parsed' again
+  // TODO:  After setCar, a Cons cell needs to be `parsed' again
   // using parseList.
   public Node getCar() { return null; }
   
   public Node getCdr() { return null; }
   
-  public void setCar(Node a) { System.out.println("Not a Cons node"); }
+  public void setCar(Node a) { System.err.println("Not a Cons node"); }
   
-  public void setCdr(Node d) { System.out.println("Not a Cons node"); }
+  public void setCdr(Node d) { System.err.println("Not a Cons node"); }
   
   public String getName() { return "Not Ident"; }
   
