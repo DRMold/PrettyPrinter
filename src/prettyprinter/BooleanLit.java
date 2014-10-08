@@ -22,7 +22,7 @@ class BooleanLit extends Node
         if (n > 0)
         {
             for (int i = 0;i < n; i++)
-                System.out.print("space_bool");
+                System.out.print(" ");
         }
    
         if (booleanVal) 

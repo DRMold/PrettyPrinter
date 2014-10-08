@@ -15,7 +15,7 @@ class StrLit extends Node
         if (n > 0)
         {
             for (int i = 0;i < n; i++)
-                System.out.print("space_str");
+                System.out.print(" ");
         }
 
         System.out.println("\"" + strVal + "\"");

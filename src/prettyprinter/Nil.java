@@ -17,7 +17,7 @@ class Nil extends Node
         if (n > 0)
         {
             for (int i = 0;i < n; i++)
-                System.out.print("space_nil");
+                System.out.print(" ");
         }
     
         if (p) 
@@ -26,7 +26,7 @@ class Nil extends Node
         } 
         else
         {
-          System.out.println("()");
+          System.out.print("()");
         }
   }
 }

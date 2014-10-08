@@ -8,34 +8,17 @@ class Begin extends Special
     void print(Node t, int n, boolean p) 
     {
         if (n > 0)
-        {    
-            for (int i = 0; i < n; i++)
-            {
-                System.out.print("space_begin");
-            }                
+        {
+            for(int i = 0; i < n; i++)
+                System.out.print(" ");
         }
         
         if (p)
-        { 
-            if (t.isPair())
-            {
-                System.out.println();
-                t.print(4, true);
-            }
-            else
-                t.print(0, true);
+        {
+            t.print(n+4, true);
         }
         else
-        {
-           System.out.print("("); 
-           if (t.isPair())
-           {
-                System.out.println();
-                t.print(4, true);
-           }
-           else
-               t.print(0, true);
-        }
+            System.out.println("(begin");
     }
 }
 

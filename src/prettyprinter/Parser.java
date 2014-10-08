@@ -77,7 +77,8 @@ class Parser
         return new Cons(a, b);
       }
       else
-        return null; //Just getting rid of errors
+        System.err.println("Incorrect Syntax");
+      return new Nil(); //Just getting rid of errors
   }
   
   private Node parseY()

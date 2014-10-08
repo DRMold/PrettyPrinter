@@ -6,26 +6,17 @@ class Quote extends Special
     void print(Node t, int n, boolean p) 
     {
         if (n > 0)
-        {    
+        {
             for (int i = 0; i < n; i++)
-            {
-                System.out.print("space_quote");
-            }                
+                System.out.print(" ");
         }
         
         if (p)
-        { 
-            if (t.isPair() || t.isNull())
-                t.print(0, true);
-            else
-                System.out.print("'");
+        {
+            if (t.getCar() != null)
+            { t.getCar().print(n, true); }
         }
         else
-        {
-           if (t.isPair() || t.isNull())
-            t.print(0, true);
-           else
-               System.out.print("'");
-        }
+            System.out.print("'(");
     }
 }

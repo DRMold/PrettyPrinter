@@ -70,13 +70,9 @@ class Cons extends Node
     void print(int n, boolean p) 
     {
         if (this.car.isPair())
-        {
-            form.print(this.car, n, false); 
-        }
+            form.print(this.car, n, false);
         else
-        {
-            form.print(this.car, n, p); 
-        }
+            form.print(this.car, n, p);
         form.print(this.cdr, n, p);
     }
 }
