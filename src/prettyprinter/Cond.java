@@ -8,7 +8,7 @@ class Cond extends Special
     {
         if (p)
         {
-            t.print(n+4, true);
+            printCond(t, n);
         }
         else
         {
@@ -19,5 +19,24 @@ class Cond extends Special
             }
             System.out.println("(cond ");
         }
+    }
+    
+    private void printCond(Node t, int n)
+    {
+        if (t.getCdr().isNull())
+        {
+            t.getCar().print(n+4, false);
+            System.out.println();
+            if (n > 0)
+            {
+                for (int i = 0; i < n; i++)
+                    System.out.print(" ");
+            }
+            t.getCdr().print(n+4, true);
+            return;
+        }
+        t.getCar().print(n+4, false);
+        System.out.println();
+        printCond(t.getCdr(), n);
     }
 }

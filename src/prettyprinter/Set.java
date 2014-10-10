@@ -11,7 +11,7 @@ class Set extends Special
             if (t.getCdr().isPair() && (t.getCdr().getCdr() != null))
             {
                 System.out.print(" ");
-                t.getCdr().getCar().print(n);
+                t.getCdr().getCar().print(n, true);
                 t.getCdr().getCdr().print(n, true);
             }
             else if (!t.getCdr().isPair())

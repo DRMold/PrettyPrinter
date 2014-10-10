@@ -3,28 +3,13 @@ import java.io.*;
 
 class If extends Special 
 {
-    void print(Node t, int n, boolean p)
+    void print(Node t, int n, boolean p) 
     {
         if (p)
         {
-            if (t.getCdr().getCdr() != null)
-            {
-                t.getCar().print(-n, true);
-                System.out.println();
-                t.getCdr().getCar().print(n+4, true);
-                System.out.println();
-                t.getCdr().getCdr().print(n+4, true);
-                System.out.println();
-            }
-            else if (t.getCdr() != null)
-            {
-                t.getCar().print(-n, false);
-                System.out.println();
-                t.getCdr().print(n+4, true);
-                System.out.println();
-            }
-            else
-                System.err.print("NullPointer");
+            t.getCar().print(-n, false);
+            System.out.println();
+            printIf(t.getCdr(), n);
         }
         else
         {
@@ -35,5 +20,24 @@ class If extends Special
             }
             System.out.print("(if ");
         }
-   }
+    }
+    
+    private void printIf(Node t, int n)
+    {
+        if (t.getCdr().isNull())
+        {
+            t.getCar().print(n+4, false);
+            System.out.println();
+            if (n > 0)
+            {
+                for (int i = 0; i < n; i++)
+                    System.out.print(" ");
+            }
+            t.getCdr().print(n+4, true);
+            return;
+        }
+        t.getCar().print(n+4, false);
+        System.out.println();
+        printIf(t.getCdr(), n);
+    }
 }

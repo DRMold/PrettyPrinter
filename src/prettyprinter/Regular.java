@@ -18,15 +18,15 @@ class Regular extends Special
                     System.out.print(" ");
             }
             System.out.print("(");
-            if (t.isPair())
+            if (t.isPair() && t.getCdr() != null)
             {
                 t.getCar().print(n, true);
-                t.getCdr().print(n, true);
-                System.out.println();
+                t.getCdr().print(-n, true);
             }
-            else
+            else if (!t.isPair())
                 t.print(-n, true);
-            //System.out.println();
+            else
+                System.err.println("Null Pointer");
         }
     }
 }

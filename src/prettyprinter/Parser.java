@@ -54,7 +54,7 @@ class Parser
       if (tt == Token.LPAREN) { return parseRest(); }
       else if (tt == Token.FALSE) { return new BooleanLit(false); }
       else if (tt == Token.TRUE) { return new BooleanLit(true); }
-      else if (tt == Token.QUOTE) { return new Cons(new Ident("Quote"),new Cons(parseExp(), new Nil())); }
+      else if (tt == Token.QUOTE) { return new Cons(new Ident("quote"),new Cons(parseExp(), new Nil())); }
       else if (tt == Token.INT) { return new IntLit(tok.getIntVal()); }
       else if (tt == Token.STRING) { return new StrLit(tok.getStrVal()); }
       else if (tt == Token.IDENT) { return new Ident(tok.getName()); }

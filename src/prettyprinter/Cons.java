@@ -64,6 +64,7 @@ class Cons extends Node
      {
          form.print(this.car, n, false);
          form.print(this.cdr, n, true);
+         System.out.println();
      }
 
     
@@ -73,6 +74,6 @@ class Cons extends Node
             form.print(this.car, n, false);
         else
             form.print(this.car, n, p);
-        form.print(this.cdr, n, p);
+        form.print(this.cdr, n, true);
     }
 }

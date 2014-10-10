@@ -25,7 +25,10 @@ class Node
   // subclasses of Node as well.
   void print(int n, boolean p) 
   {
-    print(n);
+    if (p && n > 0)
+      print(-n);
+    else
+        print(n);
   }
 
   // For parsing Cons nodes, for printing trees, and later for

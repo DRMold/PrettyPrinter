@@ -7,7 +7,7 @@ class Let extends Special
     {
         if (p)
         {
-            t.print(n+4, true);
+            printLet(t, n);
         }
         else
         {
@@ -18,5 +18,24 @@ class Let extends Special
             }
             System.out.println("(let ");
         }
+    }
+    
+    private void printLet(Node t, int n)
+    {
+        if (t.getCdr().isNull())
+        {
+            t.getCar().print(n+4, false);
+            System.out.println();
+            if (n > 0)
+            {
+                for (int i = 0; i < n; i++)
+                    System.out.print(" ");
+            }
+            t.getCdr().print(n+4, true);
+            return;
+        }
+        t.getCar().print(n+4, false);
+        System.out.println();
+        printLet(t.getCdr(), n);
     }
 }
