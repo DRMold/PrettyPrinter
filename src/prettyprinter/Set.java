@@ -5,12 +5,6 @@ class Set extends Special
 {
     void print(Node t, int n, boolean p) 
     {
-        if (n > 0)
-        {
-            for (int i = 0; i < n; i++)
-                System.out.print(" ");
-        }
-        
         if (p)
         {
             t.getCar().print(n, true);
@@ -30,6 +24,11 @@ class Set extends Special
         }
         else
         {
+            if (n > 0)
+            {
+                for (int i = 0; i < n; i++)
+                    System.out.print(" ");
+            }
             System.out.print("(set ");
         }
     }

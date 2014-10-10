@@ -8,11 +8,25 @@ class Regular extends Special
     {
         if (p)
         {
-            t.print(1, true); }
+            t.print(n, true);
+        }
         else
         {
+            if (n > 0)
+            {
+                for (int i = 0; i < n; i++)
+                    System.out.print(" ");
+            }
             System.out.print("(");
-            t.print(n-n, true);
+            if (t.isPair())
+            {
+                t.getCar().print(n, true);
+                t.getCdr().print(n, true);
+                System.out.println();
+            }
+            else
+                t.print(-n, true);
+            //System.out.println();
         }
     }
 }
